@@ -1,6 +1,6 @@
 // Reducers are just functions
 
-import { FETCH_WEATHER } from '../action/index';
+import { FETCH_WEATHER } from '../actions/index';
 
 export default function(state = [], action) {
     
