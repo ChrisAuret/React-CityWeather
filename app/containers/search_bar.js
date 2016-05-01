@@ -12,10 +12,7 @@ class SearchBar extends Component{
     constructor(props) {
       super(props);
       
-      console.log('fetchWeather', fetchWeather);
-      
-      this.state = { term: '' }
-      
+      this.state = { term: '' }     
       this.onInputChange = this.onInputChange.bind(this); // or () => { fat arrow }      
       this.onFormSubmit = this.onFormSubmit.bind(this);
     }
@@ -27,8 +24,7 @@ class SearchBar extends Component{
     }
     
     onFormSubmit(event) {
-      event.preventDefault();
-            
+      event.preventDefault();         
       this.props.fetchWeather(this.state.term);
       this.setState({term: ''});
     }
@@ -63,10 +59,7 @@ function mapDispatchToProps(dispatch) {
 //   //dispatch makes action flow into middleware and then the reducers. 
 // }
 
-// no state so pass null
-//xport default connect(null, mapDispatchToProps)(SearchBar);
-
 // Promote BookList from a component to a container - it needs to know
 // about this new dispatch method, selectBook. Make it available
-// as a prop.
+// as a prop. No state so pass null
 export default connect(null, mapDispatchToProps)(SearchBar);
