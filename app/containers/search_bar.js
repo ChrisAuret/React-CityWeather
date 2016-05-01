@@ -1,7 +1,7 @@
-import React , { Component } from 'react';
-import { connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { fetchWeather } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
 // Container Setup
 // container need to call action creator - > reach out to redux and use redux directly
@@ -11,6 +11,8 @@ import { fetchWeather } from '../actions/index';
 class SearchBar extends Component{   
     constructor(props) {
       super(props);
+      
+      console.log('fetchWeather', fetchWeather);
       
       this.state = { term: '' }
       
@@ -26,10 +28,7 @@ class SearchBar extends Component{
     
     onFormSubmit(event) {
       event.preventDefault();
-      
-      // go fetch weather data
-      console.log(this.props);
-      
+            
       this.props.fetchWeather(this.state.term);
       this.setState({term: ''});
     }
@@ -50,11 +49,24 @@ class SearchBar extends Component{
     }
 }
 
-function mapDispatchToProps(dispatch){
-  //calls actionCreator which when called returns an action
-  return bindActionCreators({fetchWeather}, dispatch);
-  //dispatch makes action flow into middleware and then the reducers. 
+// Anything returned from this function will end up as props
+// on the SearchBar container
+function mapDispatchToProps(dispatch) {
+  // Whenever selectBook is called, the result shoudl be passed
+  // to all of our reducers
+  return bindActionCreators({ fetchWeather }, dispatch);
 }
 
+// function mapDispatchToProps(dispatch){
+//   //calls actionCreator which when called returns an action
+//   return bindActionCreators({fetchWeather}, dispatch);
+//   //dispatch makes action flow into middleware and then the reducers. 
+// }
+
 // no state so pass null
+//xport default connect(null, mapDispatchToProps)(SearchBar);
+
+// Promote BookList from a component to a container - it needs to know
+// about this new dispatch method, selectBook. Make it available
+// as a prop.
 export default connect(null, mapDispatchToProps)(SearchBar);
