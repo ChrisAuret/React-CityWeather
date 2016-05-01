@@ -7,8 +7,19 @@ export function fetchWeather(city) {
     const url = `${ROOT_URL}&q=${city},us`;
     const request = axios.get(url);
     
+    console.log('Request:', request );
+    
     return {
         type: FETCH_WEATHER,
         payload: request
     };
 }
+
+
+// submit form ==> calls action creator (fetch weather(city))
+// make ajax call which returns a promise
+//  return the promise as the payload
+//
+//promise is intercepted by middleware redux-promise.
+// redux-promise  Stops the action, maninipulates it, 
+//  finally it passes to reducer
