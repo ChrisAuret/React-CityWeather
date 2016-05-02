@@ -15,7 +15,6 @@ export function fetchWeather(city) {
     };
 }
 
-
 // submit form ==> calls action creator (fetch weather(city))
 // make ajax call which returns a promise
 //  return the promise as the payload
